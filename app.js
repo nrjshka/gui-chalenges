@@ -14,13 +14,12 @@ app.use(render)
 app.use(koaBody())
 
 // Routers
-router.get('/tabs', tabs)
+router.get('/text', splitText)
 
 app.use(router.routes())
 
-// View Controllers
-async function tabs(ctx) {
-	await ctx.render('tabs')
+async function splitText(ctx) {
+	await ctx.render('text')
 }
 
-if (!module.parent) app.listen(3000);
+if (!module.parent) app.listen(8000);
