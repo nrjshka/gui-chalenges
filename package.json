@@ -1,0 +1,27 @@
+{
+  "name": "gui-chalenges",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrjshka/gui-chalenges.git"
+  },
+  "author": "nrjshka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrjshka/gui-chalenges/issues"
+  },
+  "homepage": "https://github.com/nrjshka/gui-chalenges#readme",
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-logger": "^3.2.1",
+    "koa-views": "^7.0.1",
+    "swig-templates": "^2.0.3"
+  }
+}
