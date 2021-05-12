@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  block-size: 100%;
+  inline-size: 100%;
+
+  overflow: hidden auto;
+  scroll-snap-type: y;
+
+  & > body > section {
+    scroll-snap-align: center;
+  }
+}
+
+body {
+  min-block-size: 100%;
+  min-inline-size: 100%;
+  font-family: system-ui, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15vh 2vh;
+}

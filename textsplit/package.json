@@ -1,12 +1,18 @@
 {
   "name": "textsplit",
   "version": "0.0.0",
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "devDependencies": {
+    "postcss-easings": "^3.0.1",
+    "postcss-preset-env": "^6.7.0",
     "vite": "^2.3.0"
   }
 }

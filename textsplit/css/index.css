@@ -1,0 +1,140 @@
+@import './default.css';
+
+@custom-media --motionOK (prefers-reduced-motion: no-preference);
+
+section {
+  block-size: 70vh;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-weight: 100;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+
+  --scalar: 2vw;
+  font-size: clamp(
+    1.5rem, 
+    calc(1rem + var(--scalar)), 
+    8rem);
+
+  @media (width > 480px) { & {
+    --scalar: 4vw;
+  }}
+}
+
+p {
+  font-weight: lighter;
+  line-height: 1.25;
+  max-inline-size: 20ch;
+  font-size: clamp(1.25rem, calc(1rem + 3vw), 3rem);
+}
+
+letter-animation {
+  @media (--motionOK) {
+    @nest [&] > span {
+      display: inline-block;
+      white-space: break-spaces;
+    }
+
+    @nest [&="breath"] {
+      --glow-color: white;
+
+      & > span {
+        animation:
+          breath 1200ms ease
+          calc(var(--index) * 100 * 1ms)
+          infinite alternate;
+      }
+
+      @media (preference-color-scheme: light) { & {
+        --glow-color: black
+      } }
+    }
+
+    @nest [&="hover"] {
+      --glow-color: white;
+
+      &:hover > span {
+        transform: scale(.75) perspective(1px);
+      }
+
+      & > span {
+        transition: transform .3s ease;
+        cursor: pointer;
+        will-change: transform;
+
+        &:hover {
+          transform: scale(1.25) perspective(1px);
+        }
+      }
+    }
+
+    @nest [&="hide"] {
+      --glow-color: white;
+      
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 1ch;
+
+      overflow: hidden;
+      
+      & > span {
+
+        transition: transform .3s ease;
+        cursor: pointer;
+        will-change: transform;
+
+        transform: translateY(40px);
+      }
+
+      & > span:hover {
+        transform: translateY(0);
+      }
+    }
+
+    @nest [&="trampoline"] {
+      & > span {
+        animation: 
+          trampoline 1200ms ease
+          calc(var(--index) * 500 * 1ms)
+          infinite alternate;
+      }
+    }
+  }
+}
+
+split-by {
+  @media (--motionOK) {
+    @nest [&="word"] {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 1ch;
+    }
+  } 
+}
+
+@keyframes breath {
+  from {
+    animation-timing-function: ease-out;
+  }
+
+  to {
+    transform: scale(1.25) translateY(-5px) perspective(1px);
+    text-shadow: 0 0 40px var(--glow-color);
+    animation-timing-function: ease-in-out;
+  }
+}
+
+@keyframes trampoline {
+  from {
+    animation-timing-function: ease-out;
+  }
+
+  to {
+    transform: translateY(-40px) perspective(1px);
+    animation-timing-function: ease-in-out;
+  }
+}
