@@ -167,4 +167,34 @@ input[type="range"] {
   appearance: none;
   background: transparent;
   outline-offset: 5px;
+
+  &::-webkit-slider-runnable-track {
+    appearance: none;
+    block-size: var(--track-height);
+    border-radius: 5ex;
+    background:
+      linear-gradient(
+        to right,
+        transparent var(--track-fill),
+        var(--surface1) 0%
+      ),
+      var(--brand-bg-gradient) fixed;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    cursor: ew-resize;
+
+    block-size: var(--thumb-size);
+    inline-size: var(--thumb-size); 
+    margin-top: var(--thumb-offset);
+    border-radius: 50%;
+
+    background: var(--brand-bg-gradient) fixed;
+    box-shadow: 0 0 0 var(--thumb-highlight-size) var(--thumb-highlight-color);
+  }
+
+  &:is(:hover, :active) {
+    --thumb-hightlight-size: 10px;
+  }
 }
