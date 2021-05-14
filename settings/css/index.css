@@ -178,6 +178,11 @@ fieldset {
   }
 }
 
+.input-stack {
+  display: grid;
+  gap: 20px;
+}
+
 input[type="range"] {
   --track-height: .5ex;
   --trach-fill: 0%;
@@ -315,5 +320,5 @@ input[type="checkbox"] {
     @media (--motionOK) {
       & { transition: transform .2s ease; }
     }
-  }
+}
 }
