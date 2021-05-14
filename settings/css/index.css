@@ -267,3 +267,53 @@ input[type="range"] {
   }
 }
 
+
+input[type="checkbox"] {
+  inline-size: var(--space-sm);
+  block-size: var(--space-sm);
+  
+  margin: 0;
+  outline-offeset: 5px;
+  accent-color: var(--brand);
+
+  position: relative;
+
+  transform-style: preserver-3d;
+
+  cursor: pointer;
+
+  &:hover::before {
+    --thumb-scale: 1;
+  }
+
+  &::before {
+    --thumb-scale: .01;
+    --thumb-highlight-size: var(--space-xl);
+
+    content: '';
+    
+    inline-size: var(--thumb-highlight-size);
+    block-size: var(--thumb-highlight-size);
+
+    clip-path: circle(50%);
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    background: var(--thumb-highlight-color);
+    transform-origin: center center;
+    transform:
+      translateX(-50%)
+      translateY(-50%)
+      translateZ(-1px)
+      scale(var(--thumb-scale));
+    
+    will-change: transform;
+
+    @media (--motionOK) {
+      & { transition: transform .2s ease; }
+    }
+  }
+}
