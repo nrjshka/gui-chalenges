@@ -27,6 +27,8 @@
   --space-xl: 3rem;
   --space-xxl: 6rem;
 
+  --thumb-highlight-color: lch(100 0 0 / 20%);
+
   @media (prefers-color-scheme: light) {
     & {
       --surface1: lch(90 0 0);
@@ -40,6 +42,8 @@
       --brand: lch(64 40 237);
       --brand-bg1: lch(50 64 349);
       --brand-bg2: lch(40 84 300);
+
+      --thumb-highlight-color: lch(0 0 0 / 20%);
     }
   }
 }
@@ -52,6 +56,19 @@
 html {
   block-size: 100%;
   inline-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  min-inline-size: 100%;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding-block: var(--space-xs);
+
+  background: var(--surface1);
+  color: var(--text1);
+  font-family: system-ui, sans-serif;
 }
 
 main {
@@ -117,6 +134,13 @@ fieldset {
 
   padding-block: var(--space-sm);
   padding-inline: var(--space-md);
+
+  @media (width >= 540px) {
+    grid-template-columns: var(--space-xxl) 1fr;
+    gap: var(--space-xs);
+    padding-block: var(--space-md);
+    padding-inline: 0 var(--space-xl);
+  }
 
   &:focus-within {
     background: var(--surface2);
@@ -192,9 +216,54 @@ input[type="range"] {
 
     background: var(--brand-bg-gradient) fixed;
     box-shadow: 0 0 0 var(--thumb-highlight-size) var(--thumb-highlight-color);
+
+    @media (--motionOK) {
+      & { transition: box-shadow .1s ease; }
+    }
+
+    @nest .fieldset-item:focus-within & {
+      border-color: var(--surface2);
+    }
+  }
+
+  &::-moz-range-track {
+    appearance: none;
+    block-size: var(--track-height);
+    border-radius: 5ex;
+    background:
+      linear-gradient(
+        to right,
+        transparent var(--track-fill),
+        var(--surface1) 0%
+      ),
+      var(--brand-bg-gradient) fixed;
+  }
+
+  &::-moz-range-thumb {
+    appearance: none;
+    cursor: ew-resize;
+
+    border: 3px solid var(--surface3);
+
+    block-size: var(--thumb-size);
+    inline-size: var(--thumb-size); 
+    margin-top: var(--thumb-offset);
+    border-radius: 50%;
+
+    background: var(--brand-bg-gradient) fixed;
+    box-shadow: 0 0 0 var(--thumb-highlight-size) var(--thumb-highlight-color);
+
+    @media (--motionOK) {
+      & { transition: box-shadow .1s ease; }
+    }
+
+    @nest .fieldset-item:focus-within & {
+      border-color: var(--surface2);
+    }
   }
 
   &:is(:hover, :active) {
-    --thumb-hightlight-size: 10px;
+    --thumb-highlight-size: 10px;
   }
 }
+
